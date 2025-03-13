@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 var JWTSettings = builder.Configuration.GetSection("JWTSetting");
 var DbConnect = builder.Configuration.GetConnectionString("DbConnection");
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(DbConnect));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=auth.db"));
 builder.Services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
